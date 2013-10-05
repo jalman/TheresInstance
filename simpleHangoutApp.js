@@ -68,7 +68,11 @@ function renderProposeTeam() {
 }
 
 function init() {
-  console.log('hai');
+	gapi.hangout.data.onStateChanged.add(function() {
+	  console.log(gapi.hangout.data.getState());
+	});
+
+
   // When API is ready...
   gapi.hangout.onApiReady.add(
       function(eventObj) {
