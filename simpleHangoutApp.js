@@ -68,6 +68,7 @@ function init() {
       });
   
   gapi.hangout.data.setValue("round", "1");
+  renderProposeTeam();
 }
 
 // Wait for gadget to load.                                                       
