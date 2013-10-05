@@ -12,7 +12,7 @@ function shuffle(array) {
   while (0!== currentIndex){
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
-    
+
     temporaryValue = array[currentIndex];
     array[currentIndex] = array[randomIndex];
     array[randomIndex] = temporaryValue;
@@ -36,7 +36,7 @@ function showParticipants() {
       }
       retVal += '<li>' + participant.person.displayName + "-" + shuffle(roles)[index] + '</li>';
     }
-  }  
+  }
   retVal += '</ul>';
 
   var div = document.getElementById('participantsDiv');
@@ -47,18 +47,19 @@ function showParticipants() {
 
 function renderProposeTeam() {
   var participants = gapi.hangout.getParticipants();
+  gapi.hangout.data.setValue("round", 0);
   var retVal = gapi.hangout.data.getValue("round");
   console.log(retVal);
   var numToChoose = numOnMission[retVal];
-  
+
   var header = document.getElementById('headerDiv');
-  
+
   header.innerHTML = '<p>' + numToChoose + ' people left to choose for mission ' + retVal + '!</p>'
-  
+
 }
 
 function init() {
-  // When API is ready...                                                         
+  // When API is ready...
   gapi.hangout.onApiReady.add(
       function(eventObj) {
         if (eventObj.isApiReady) {
@@ -68,8 +69,8 @@ function init() {
 	gapi.hangout.data.setValue("round", "1");
 	renderProposeTeam();
       });
-  
+
 }
 
-// Wait for gadget to load.                                                       
+// Wait for gadget to load.
 gadgets.util.registerOnLoadHandler(init);
