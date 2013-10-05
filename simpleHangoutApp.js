@@ -22,7 +22,7 @@ function shuffle(array) {
 
 function showParticipants() {
   var participants = gapi.hangout.getParticipants();
-  var retVal = '<p>Participants6: </p><ul>';
+  var retVal = '<p>Participants7: </p><ul>';
   for (var i in participants) {
     participant = participants[i];
     retVal += '<p>' + participant.person.displayName + '<p>';
@@ -47,14 +47,21 @@ function showParticipants() {
 
 function renderProposeTeam() {
   var participants = gapi.hangout.getParticipants();
-  gapi.hangout.data.setValue("round", "0");
   var retVal = gapi.hangout.data.getValue("round");
   console.log(parseInt(retVal));
   var numToChoose = numOnMission[retVal];
 
   var header = document.getElementById('headerDiv');
-
   header.innerHTML = '<p>' + numToChoose + ' people left to choose for mission ' + retVal + '!</p>'
+
+  var retVal = '<p>';
+
+  for (var index in participants) {
+      var participant = participants[index];
+      if (!participant.person) continue;
+      retVal += participant.person.displayName + '<form><input type="checkbox" id="choose' + i + '"></form><br>'
+  }
+  document.getElementById('participantsDiv').innerHTML = retVal;
 
 }
 
@@ -65,9 +72,10 @@ function init() {
         if (eventObj.isApiReady) {
           document.getElementById('showParticipants')
             .style.visibility = 'visible';
+
+          gapi.hangout.data.setValue("round", "1");
+          renderProposeTeam();
         }
-	gapi.hangout.data.setValue("round", "1");
-	renderProposeTeam();
       });
 
 }
