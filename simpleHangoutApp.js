@@ -68,6 +68,7 @@ function renderProposeTeam() {
 }
 
 function init() {
+  console.log('hai');
   // When API is ready...
   gapi.hangout.onApiReady.add(
       function(eventObj) {
