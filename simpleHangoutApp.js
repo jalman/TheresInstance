@@ -65,10 +65,10 @@ function init() {
           document.getElementById('showParticipants')
             .style.visibility = 'visible';
         }
+	gapi.hangout.data.setValue("round", "1");
+	renderProposeTeam();
       });
   
-  gapi.hangout.data.setValue("round", "1");
-  renderProposeTeam();
 }
 
 // Wait for gadget to load.                                                       
