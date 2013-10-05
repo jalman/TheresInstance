@@ -47,9 +47,9 @@ function showParticipants() {
 
 function renderProposeTeam() {
   var participants = gapi.hangout.getParticipants();
-  gapi.hangout.data.setValue("round", 0);
+  gapi.hangout.data.setValue("round", "0");
   var retVal = gapi.hangout.data.getValue("round");
-  console.log(retVal);
+  console.log(parseInt(retVal));
   var numToChoose = numOnMission[retVal];
 
   var header = document.getElementById('headerDiv');
