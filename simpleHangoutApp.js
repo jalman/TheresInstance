@@ -46,6 +46,8 @@ function showParticipants() {
 // proposing a team phase
 
 function renderProposeTeam() {
+  gapi.hangout.data.setValue("round", "1");
+
   var participants = gapi.hangout.getParticipants();
   var retVal = gapi.hangout.data.getValue("round");
   console.log(parseInt(retVal));
@@ -59,7 +61,7 @@ function renderProposeTeam() {
   for (var index in participants) {
       var participant = participants[index];
       if (!participant.person) continue;
-      retVal += participant.person.displayName + '<form><input type="checkbox" id="choose' + i + '"></form><br>'
+      retVal += participant.person.displayName + '<form><input type="checkbox" id="choose' + index + '"></form><br>'
   }
   document.getElementById('participantsDiv').innerHTML = retVal;
 
