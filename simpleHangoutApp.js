@@ -48,6 +48,7 @@ function showParticipants() {
 function renderProposeTeam() {
   var participants = gapi.hangout.getParticipants();
   var retVal = gapi.hangout.data.getValue("round");
+  console.log(retVal);
   var numToChoose = numOnMission[retVal];
   
   var header = document.getElementById('headerDiv');
@@ -65,6 +66,8 @@ function init() {
             .style.visibility = 'visible';
         }
       });
+  
+  gapi.hangout.data.setValue("round", "1");
 }
 
 // Wait for gadget to load.                                                       
