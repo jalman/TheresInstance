@@ -1,5 +1,5 @@
 var roles = ['resistance','resistance', 'resistance','spy','spy','resistance','spy','resistance','resistance','spy']
-var numOnMission = [3,4,4,5,5]; //why would you play without 10 players
+var = [3,4,4,5,5]; //why would you play without 10 players
 
 var gameRound = 1;
 
@@ -22,7 +22,7 @@ function shuffle(array) {
 
 function showParticipants() {
   var participants = gapi.hangout.getParticipants();
-  var retVal = '<p>Participants5.5: </p><ul>';
+  var retVal = '<p>Participants6: </p><ul>';
   for (var i in participants) {
     participant = participants[i];
     retVal += '<p>' + participant.person.displayName + '<p>';
