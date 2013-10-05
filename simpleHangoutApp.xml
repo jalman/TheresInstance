@@ -48,6 +48,7 @@
     onClick="showParticipants()"/>
 </p>
 
+<div id="headerDiv"></div>
 <div id="participantsDiv"></div>
 
 <hr>

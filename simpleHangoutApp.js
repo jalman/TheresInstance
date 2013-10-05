@@ -1,4 +1,8 @@
 var roles = ['resistance','resistance', 'resistance','spy','spy','resistance','spy','resistance','resistance','spy']
+var numOnMission = [3,4,4,5,5]; //why would you play without 10 players
+
+var gameRound = 1;
+
 function shuffle(array) {
   var currentIndex = array.length
     , temporaryValue
@@ -18,7 +22,7 @@ function shuffle(array) {
 
 function showParticipants() {
   var participants = gapi.hangout.getParticipants();
-  var retVal = '<p>Participants5: </p><ul>';
+  var retVal = '<p>Participants5.5: </p><ul>';
   for (var i in participants) {
     participant = participants[i];
     retVal += '<p>' + participant.person.displayName + '<p>';
@@ -38,6 +42,18 @@ function showParticipants() {
   var div = document.getElementById('participantsDiv');
 
   div.innerHTML = retVal;
+}
+// proposing a team phase
+
+function renderProposeTeam() {
+  var participants = gapi.hangout.getParticipants();
+  var retVal = gapi.hangout.data.getValue("round");
+  var numToChoose = numOnMission[retVal];
+  
+  var header = document.getElementById('headerDiv');
+  
+  header.innerHTML = '<p>' + numToChoose + ' people left to choose for mission ' + retVal + '!</p>'
+  
 }
 
 function init() {
