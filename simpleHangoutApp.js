@@ -61,7 +61,7 @@ function renderProposeTeam() {
   for (var index in participants) {
       var participant = participants[index];
       if (!participant.person) continue;
-      retVal += participant.person.displayName + '<form><input type="checkbox" id="choose' + index + '"></form><br>'
+      retVal += '<form><input type="checkbox" id="choose' + index + '">' + participant.person.displayName + '</form><br>'
   }
   document.getElementById('participantsDiv').innerHTML = retVal;
 
@@ -75,7 +75,6 @@ function init() {
           document.getElementById('showParticipants')
             .style.visibility = 'visible';
 
-          gapi.hangout.data.setValue("round", "1");
           renderProposeTeam();
         }
       });
