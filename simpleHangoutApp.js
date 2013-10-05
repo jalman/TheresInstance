@@ -1,5 +1,5 @@
 var roles = ['resistance','resistance', 'resistance','spy','spy','resistance','spy','resistance','resistance','spy']
-var = [3,4,4,5,5]; //why would you play without 10 players
+var numOnMission = [3,4,4,5,5]; //why would you play without 10 players
 
 var gameRound = 1;
 
