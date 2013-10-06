@@ -54,7 +54,7 @@ function renderProposeTeamHeader() {
     numLeftToChoose = numToChoose;
     for (var index in participants) {
         var cb = document.getElementById('choose' + index);
-        if (cb.checked) --numLeftToChoose;
+        if (cb && cb.checked) --numLeftToChoose;
     }
     header.innerHTML = '<p>' + numLeftToChoose + ' people left to choose for mission ' + numToChoose + '!</p>'
 }
@@ -80,8 +80,8 @@ function init() {
           numToChoose = numLeftToChoose = numOnMission[roundNum];
           participants = gapi.hangout.getParticipants();
           
-          renderProposeTeamHeader();
           renderProposeTeam();
+          renderProposeTeamHeader();
         }
 	});
 
