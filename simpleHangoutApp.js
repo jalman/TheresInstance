@@ -89,6 +89,7 @@ function submitTeam() {
             team.push(index);
         }
     }
+    console.log(team);
     gapi.hangout.data.submitDelta( {"phase": "approve",
                                     "team": JSON.stringify(team) });
 }
