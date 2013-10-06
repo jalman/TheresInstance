@@ -159,10 +159,12 @@ function succeedFail() {
 	countNo = 0;
 	countYes = 0;
 
+    var obj = [];
     for (var i=0; i<participants.length; ++i) {
         votes[i] = -1;
+        obj.push("vote" + i);
     }
-    gapi.hangout.data.submitDelta( {"phase": "vote" });
+    gapi.hangout.data.submitDelta( {"phase": "vote" }, obj);
 
 	if (isIn(myPlayerIndex, chosenTeam)) {
 		IOnMission = true;
