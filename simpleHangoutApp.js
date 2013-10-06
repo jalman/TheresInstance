@@ -92,7 +92,7 @@ function approveReject() {
     for (var i in chosenTeam) {
         retVal += participants[chosenTeam[i]].person.displayName + '<br>';
     }
-    document.getElementById('participantsDiv').innerHTML = retVal;
+    document.getElementById('headerDiv').innerHTML = retVal;
 
     var res = document.getElementById('participantsDiv');
 
