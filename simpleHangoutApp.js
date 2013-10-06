@@ -141,6 +141,8 @@ function getMission(str) {
 
 function init() {
 	gapi.hangout.data.onStateChanged.add(function() {
+        updateResults();
+
         var state = gapi.hangout.data.getState();
         console.log(state);
         if (state['phase'] == 'propose') {
@@ -173,6 +175,9 @@ function init() {
 
         }
       });
+
+
+      updateResults();
 }
 
 // Wait for gadget to load.
