@@ -108,7 +108,7 @@ function updateResults() {
 	var state = gapi.hangout.data.getState();
 	for (var rnd = 4; rnd >= 0; rnd--) {
 		var str = state["rnd" + rnd + ""];
-		if (!str) {
+		if (!str || str.length == 0) {
 			continue;
 		}
 		var miss = getMission(str);
@@ -139,7 +139,7 @@ function updateResults() {
 
 function getMission(str) {
 	ret = new Array();
-	for (var i = 0; i < str.length(); i++) {
+	for (var i = 0; i < str.length; i++) {
 		ret[i] = participants[parseInt(str.charAt(i))];
 	}
 	return ret;
