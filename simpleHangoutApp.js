@@ -234,7 +234,6 @@ function init() {
         else if (state['phase'] == 'approve') {
             if (!approveRejectMenuRendered) {
                 chosenTeam = JSON.parse(state['team']);
-                console.log(chosenTeam);
                 approveReject();
                 approveRejectMenuRendered = true;
             }
@@ -244,6 +243,7 @@ function init() {
                         votes[parseInt(k[4])] = parseInt(state[k]);
                     }
                 }
+                console.log(votes);
                 var finished = true;
                 for (var i=0; i<votes.length; ++i) {
                     if (votes[i] == -1) finished = false;
