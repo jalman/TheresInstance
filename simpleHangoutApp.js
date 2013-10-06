@@ -238,7 +238,6 @@ function start() {
 
 
 function init() {
-	state['phase'] = 'start';
 	document.getElementById('participantsDiv').innerHTML = '<input type="submit" value="Start the Game!" onclick="start();"></input>';
 
 	gapi.hangout.data.onStateChanged.add(function() {
