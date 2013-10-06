@@ -148,6 +148,9 @@ function getMission(str) {
 
 
 function init() {
+          participants = gapi.hangout.getParticipants();
+
+
 	gapi.hangout.data.onStateChanged.add(function() {
         updateResults();
 
@@ -156,7 +159,6 @@ function init() {
         if (state['phase'] == 'propose') {
           roundNum = gapi.hangout.data.getValue("round");
           numToChoose = numLeftToChoose = numOnMission[roundNum-1];
-          participants = gapi.hangout.getParticipants();
 
           renderProposeTeam();
           renderProposeTeamHeader();
