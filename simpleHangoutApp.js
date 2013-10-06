@@ -213,15 +213,23 @@ function checkMissionStatus() {
 		retVal += "The Mission failed with " + countNo + " failures.";
 	}
 
+
+	retVal += ' <br> <input type="submit" value="Fail" onclick="nextRound();"></input>';
+
 	document.getElementById('resultsDiv').innerHTML = retVal;
 
-	gameRound++;
-	var obj = {};
-	obj["round"] = gameRound+1;
-	obj["phase"] = "propose";
-	obj["rnd" + gameRound] = "0";
-	gapi.hangout.data.submitDelta(obj);
 
+}
+
+
+function nextRound() {
+
+		gameRound++;
+		var obj = {};
+		obj["round"] = gameRound+1;
+		obj["phase"] = "propose";
+		obj["rnd" + gameRound] = "0";
+	gapi.hangout.data.submitDelta(obj);
 }
 
 function updateResults() {
