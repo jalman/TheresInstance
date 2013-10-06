@@ -226,7 +226,7 @@ function nextRound() {
 
 		gameRound++;
 		var obj = {};
-		obj["round"] = gameRound+1;
+		obj["round"] = "" + (gameRound+1);
 		obj["phase"] = "propose";
 		obj["rnd" + gameRound] = "0";
 	gapi.hangout.data.submitDelta(obj);
