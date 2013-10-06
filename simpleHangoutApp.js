@@ -214,7 +214,7 @@ function checkMissionStatus() {
 	}
 
 
-	retVal += ' <br> <input type="submit" value="Fail" onclick="nextRound();"></input>';
+	retVal += ' <br> <input type="submit" value="Next Round" onclick="nextRound();"></input>';
 
 	document.getElementById('resultsDiv').innerHTML = retVal;
 
@@ -230,6 +230,19 @@ function nextRound() {
 		obj["phase"] = "propose";
 		obj["rnd" + gameRound] = "0";
 	gapi.hangout.data.submitDelta(obj);
+
+
+	          participants = gapi.hangout.getParticipants();
+	          document.getElementById('showParticipants')
+	            .style.visibility = 'visible';
+
+	            var myName = gapi.hangout.getLocalParticipant();
+	            for (var i in participants) {
+	                votes.push(-1);
+	                if (participants[i].person.displayName == myName) {
+	                    myPlayerIndex = i;
+	                }
+            }
 }
 
 function updateResults() {
