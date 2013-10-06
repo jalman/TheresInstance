@@ -88,14 +88,19 @@ function submitTeam() {
 // approve/reject phase
 
 function approveReject() {
+    var retVal = '<p>Mission team chosen by leader:';
+    for (var i in chosenTeam) {
+        retVal += participants[chosenTeam[i]].person.displayName + '<br>';
+    }
+    document.getElementById('participantsDiv').innerHTML = retVal;
 
-  var res = document.getElementById('resultsDiv');
+    var res = document.getElementById('resultsDiv');
+
 	retVal = '<button type="button">Approve</button>';
 	retVal += '<br>';
 	retVal += '<button type="button">Reject</button>';
 
-  res.innerHTML = retVal;
-
+    res.innerHTML = retVal;
 }
 
 function init() {
@@ -111,7 +116,7 @@ function init() {
           renderProposeTeamHeader();
         }
         else if (state['phase'] == 'approve') {
-            chosenTeam = JSON.parse(state['round']);
+            chosenTeam = JSON.parse(state['team']);
             console.log(chosenTeam);
             approveReject();
         }
