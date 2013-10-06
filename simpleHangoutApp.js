@@ -159,6 +159,8 @@ function succeedFail() {
 	countNo = 0;
 	countYes = 0;
 
+    gapi.hangout.data.submitDelta( {"phase": "vote" });
+
     for (var i=0; i<participants.length; ++i) {
         votes[i] = -1;
     }
@@ -184,6 +186,10 @@ function succeedFail() {
 	}
 
 	document.getElementById('participantsDiv').innerHTML = retVal;
+}
+// results
+function checkMissionStatus() {
+    console.log("woo");
 }
 
 function updateResults() {
@@ -226,15 +232,6 @@ function getMission(str) {
 
 
 function init() {
-	gapi.hangout.data.onMessageReceived.add(function(event) {
-
-		 if (state['phase'] == 'succeed') {
-			 if (event.message == "0") countYes++;
-			 else countNo++;
-		 }
-
-	});
-
 	gapi.hangout.data.onStateChanged.add(function() {
         updateResults();
 
@@ -267,6 +264,21 @@ function init() {
                 if (finished) {
                     succeedFail();
                 }
+            }
+        }
+        else if (state['phase'] == 'vote') {
+            for (var k in state) {
+                if (k.substring(0,4) == "vote") {
+                    votes[parseInt(k[4])] = parseInt(state[k]);
+                }
+            }
+            console.log(votes);
+            var finished = true;
+            for (var i=0; i<votes.length; ++i) {
+                if (votes[i] == -1) finished = false;
+            }
+            if (finished) {
+                checkMissionStatus();
             }
         }
 	});
