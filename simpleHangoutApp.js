@@ -230,8 +230,17 @@ function getMission(str) {
 }
 
 
+function start() {
+	state['phase'] = 'propose';
+
+	gapi.hangout.data.submitDelta( {"started": "true"} );
+}
+
 
 function init() {
+	state['phase'] = 'start';
+	document.getElementById('participantsDiv').innerHTML = "<input type="submit" value="Start the Game!" onclick="start();"></input>";
+
 	gapi.hangout.data.onStateChanged.add(function() {
         updateResults();
 
