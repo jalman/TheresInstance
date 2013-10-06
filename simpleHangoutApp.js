@@ -26,7 +26,7 @@ function shuffle(array) {
 
 function showParticipants() {
   participants = gapi.hangout.getParticipants();
-  var retVal = '<p>Participants7: </p><ul>';
+  var retVal = '<p>Participants8: </p><ul>';
   for (var i in participants) {
     participant = participants[i];
     retVal += '<p>' + participant.person.displayName + '<p>';
@@ -77,7 +77,7 @@ function init() {
         console.log(state);
         if (state['phase'] == 'propose') {
           roundNum = gapi.hangout.data.getValue("round");
-          numToChoose = numLeftToChoose = numOnMission[retVal];
+          numToChoose = numLeftToChoose = numOnMission[roundNum];
           participants = gapi.hangout.getParticipants();
           
           renderProposeTeamHeader();
