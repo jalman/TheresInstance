@@ -94,7 +94,7 @@ function approveReject() {
     }
     document.getElementById('participantsDiv').innerHTML = retVal;
 
-    var res = document.getElementById('resultsDiv');
+    var res = document.getElementById('participantsDiv');
 
 	retVal = '<button type="button">Approve</button>';
 	retVal += '<br>';
@@ -102,6 +102,42 @@ function approveReject() {
 
     res.innerHTML = retVal;
 }
+
+
+function updateResults() {
+	for (var rnd = 4; rnd >= 0; rnd--) {
+		var str = gapi.hangout.data.getValue("rnd" + rnd + "");
+		if (!str) {
+			continue;
+		}
+		var miss = getMission(str);
+
+		ret = '<p>The Mission : </p><ul>';
+
+		for (var i in miss) {
+			participant = miss[i];
+			ret += '<p>' + participant.person.displayName + '<p>';
+		}
+
+
+
+		break;
+	}
+
+	var res = document.getElementById('resultsDiv');
+	res.innerHTML = ret;
+
+}
+
+function getMission(str) {
+	ret = new Array();
+	for (var i = 0; i < str.length(); i++) {
+		ret[i] = participants[parseInt(str.charAt(i))];
+	}
+	return ret;
+}
+
+
 
 function init() {
 	gapi.hangout.data.onStateChanged.add(function() {
@@ -131,7 +167,8 @@ function init() {
             .style.visibility = 'visible';
 
             gapi.hangout.data.submitDelta( {"round": "1",
-                                            "phase": "propose"} );
+                                            "phase": "propose",
+                                            "rnd0": "0"} );
 
 
         }
