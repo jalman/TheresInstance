@@ -219,10 +219,6 @@ function start() {
 
 function init() {
 	state['phase'] = 'start';
-	document.getElementById('participantsDiv').innerHTML = "<input type="submit" value="Start the Game!" onclick="start();"></input>";
-
-
-
 
 	gapi.hangout.data.onMessageReceived.add(function(event) {
 
@@ -274,6 +270,10 @@ function init() {
   gapi.hangout.onApiReady.add(
       function(eventObj) {
         if (eventObj.isApiReady) {
+
+	document.getElementById('participantsDiv').innerHTML = "<input type="submit" value="Start the Game!" onclick="start();"></input>";
+
+
           participants = gapi.hangout.getParticipants();
           document.getElementById('showParticipants')
             .style.visibility = 'visible';
