@@ -206,6 +206,12 @@ function checkMissionStatus() {
 	}
 
 	document.getElementById('resultsDiv').innerHTML = retVal;
+
+	gameRound++;
+	gapi.hangout.data.submitDelta( {"round": (gameRound + 1) + "",
+	                                            "phase": "propose",
+                                            "rnd" + gameRound + "": "0"} );
+
 }
 
 function updateResults() {
