@@ -189,7 +189,16 @@ function succeedFail() {
 }
 // results
 function checkMissionStatus() {
-    console.log("woo");
+    var retVal = "";
+    if(countNo == 0) {
+		retVal += "The Mission succeeded!";
+	} else if (countNo == 1) {
+		retVal += "The Mission failed with one failure.";
+	} else {
+		retVal += "The Mission failed with " + countNo + " failures.";
+	}
+
+	document.getElementById('resultsDiv').innerHTML = retVal;
 }
 
 function updateResults() {
