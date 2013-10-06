@@ -168,6 +168,8 @@ function succeedFail() {
 			retVal += ' <br> <input type="submit" value="Fail" onclick="submitPassFail(' + myPlayerIndex + ', \'1\');"></input>';
 		}
 	}
+
+	document.getElementById('participantsDiv').innerHTML = retVal;
 }
 
 function updateResults() {
