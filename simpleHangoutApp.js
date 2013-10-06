@@ -286,8 +286,6 @@ function init() {
 	document.getElementById('participantsDiv').innerHTML = '<input type="submit" value="Start the Game!" onclick="start();"></input>';
 
 	gapi.hangout.data.onStateChanged.add(function() {
-        updateResults();
-
         var state = gapi.hangout.data.getState();
         console.log(state);
         if (state['phase'] == 'propose') {
