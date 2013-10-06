@@ -132,7 +132,19 @@ function submitPassFail(index, vote) {
 }
 
 
-function SucceedFailResults() {
+
+
+
+function isIn(obj, a) {
+	for (var b in a) {
+		if (obj == b) {
+			return true;
+		}
+	}
+	return false;
+}
+
+function succeedFail() {
 	countNo = 0;
 	countYes = 0;
 
@@ -156,20 +168,6 @@ function SucceedFailResults() {
 			retVal += ' <br> <input type="submit" value="Fail" onclick="submitPassFail(' + myPlayerIndex + ', \'1\');"></input>';
 		}
 	}
-}
-
-
-function isIn(obj, a) {
-	for (var b in a) {
-		if (obj == b) {
-			return true;
-		}
-	}
-	return false;
-}
-
-function succeedFail() {
-	if myPlayerIndex
 }
 
 function updateResults() {
