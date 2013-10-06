@@ -123,7 +123,7 @@ function updateResults() {
 
 
 		for (var i in miss) {
-			participant = miss[i];
+			var participant = miss[i];
 			ret += '<p>' + participant.person.displayName + '<p>';
 		}
 
