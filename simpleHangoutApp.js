@@ -224,29 +224,25 @@ function checkMissionStatus() {
 
 function nextRound() {
 
-		gameRound++;
-		var obj = {};
-		obj["round"] = "" + (gameRound+1);
-		obj["phase"] = "propose";
-		obj["rnd" + gameRound] = "0";
+    gameRound++;
+    var obj = {}, obj2 = [];
+    obj["round"] = "" + (gameRound+1);
+    obj["phase"] = "propose";
+    obj["rnd" + gameRound] = "0";
 	gapi.hangout.data.submitDelta(obj);
 
+    participants = gapi.hangout.getParticipants();
+    document.getElementById('showParticipants').style.visibility = 'visible';
 
-	          participants = gapi.hangout.getParticipants();
-	          document.getElementById('showParticipants')
-	            .style.visibility = 'visible';
+    var myName = gapi.hangout.getLocalParticipant();
+    for (var i=0; i<participants.length; ++i) {
+        votes[i] = -1;
+        obj2.push("vote" + i);
+    }
+    gapi.hangout.data.submitDelta( obj, obj2);
 
-	            var myName = gapi.hangout.getLocalParticipant();
-	            for (var i in participants) {
-	                votes.push(-1);
-	                if (participants[i].person.displayName == myName) {
-	                    myPlayerIndex = i;
-	                }
-            }
-
-            renderProposeTeam();
-
-            renderProposeTeamHeader();
+    renderProposeTeam();
+    renderProposeTeamHeader();
 }
 
 function updateResults() {
