@@ -240,9 +240,22 @@ function getMission(str) {
 
 
 function start() {
-	state['phase'] = 'propose';
+          participants = gapi.hangout.getParticipants();
+          document.getElementById('showParticipants')
+            .style.visibility = 'visible';
 
-	gapi.hangout.data.submitDelta( {"started": "true"} );
+            gapi.hangout.data.submitDelta( {"round": "1",
+                                            "phase": "propose",
+                                            "rnd0": "0"} );
+
+            var myName = gapi.hangout.getLocalParticipant();
+            for (var i in participants) {
+                votes.push(-1);
+                if (participants[i].person.displayName == myName) {
+                    myPlayerIndex = i;
+                }
+            }
+
 }
 
 
@@ -310,21 +323,6 @@ function init() {
 	document.getElementById('participantsDiv').innerHTML = "<input type=\"submit\" value=\"Start the Game!\" onclick=\"start();\"></input>";
 
 
-          participants = gapi.hangout.getParticipants();
-          document.getElementById('showParticipants')
-            .style.visibility = 'visible';
-
-            gapi.hangout.data.submitDelta( {"round": "1",
-                                            "phase": "propose",
-                                            "rnd0": "0"} );
-
-            var myName = gapi.hangout.getLocalParticipant();
-            for (var i in participants) {
-                votes.push(-1);
-                if (participants[i].person.displayName == myName) {
-                    myPlayerIndex = i;
-                }
-            }
         }
       });
 
