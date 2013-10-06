@@ -3,11 +3,14 @@ var numOnMission = [1,1,1,2,2]; //why would you play without 10 players
 var numToChoose = 0;
 var numLeftToChoose = 0;
 var chosenTeam = [];
+var votes = [];
 
 var myPlayerIndex = 0;
 var gameRound = 1;
 var gamePhase = "propose";
 var participants = null;
+
+var approveRejectMenuRendered = false;
 
 function shuffle(array) {
   var currentIndex = array.length
@@ -89,7 +92,15 @@ function submitTeam() {
 // approve/reject phase
 
 function submitVote(index, vote) {
-    console.log(index + "," + vote);
+    var res = document.getElementById('participantsDiv');
+    if (vote == 0) {
+        res.innerHTML = 'mission approved! waiting on others to cast their votes...';
+    }
+    else if (vote == 1) {
+        res.innerHTML = 'mission rejected! waiting on others to cast their votes...';
+    }
+
+    gapi.hangout.data.submitDelta( {"vote" + index: JSON.stringify(vote)} );
 }
 
 function approveReject() {
@@ -166,9 +177,20 @@ function init() {
           renderProposeTeamHeader();
         }
         else if (state['phase'] == 'approve') {
-            chosenTeam = JSON.parse(state['team']);
-            console.log(chosenTeam);
-            approveReject();
+            if (!approveRejectMenuRendered) {
+                chosenTeam = JSON.parse(state['team']);
+                console.log(chosenTeam);
+                approveReject();
+                approveRejectMenuRendered = true;
+            }
+            else {
+                for (var k in state) {
+                    if (k.substring(0,4) == "vote") {
+                        votes[parseInt(k[4])] = parseInt(state[k]);
+                        console.log(votes);
+                    }
+                }
+            }
         }
 	});
 
@@ -187,6 +209,7 @@ function init() {
 
             var myName = gapi.hangout.getLocalParticipant();
             for (var i in participants) {
+                votes.push(-1);
                 if (participants[i].person.displayName == myName) {
                     myPlayerIndex = i;
                 }
