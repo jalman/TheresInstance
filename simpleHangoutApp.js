@@ -207,7 +207,7 @@ function checkMissionStatus() {
 	obj["round"] = gameRound+1;
 	obj["phase"] = "propose";
 	obj["rnd" + gameRound] = "0";
-	submitDelta(obj);
+	gapi.hangout.data.submitDelta(obj);
 
 }
 
