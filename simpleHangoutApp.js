@@ -88,7 +88,7 @@ function submitTeam() {
 // approve/reject phase
 
 function approveReject() {
-    var retVal = '<p>Mission team chosen by leader:';
+    var retVal = '<p>Mission team chosen by leader:<br>';
     for (var i in chosenTeam) {
         retVal += participants[chosenTeam[i]].person.displayName + '<br>';
     }
@@ -136,8 +136,6 @@ function init() {
 
         }
       });
-
-	approveReject();
 }
 
 // Wait for gadget to load.
