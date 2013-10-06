@@ -4,6 +4,7 @@ var numToChoose = 0;
 var numLeftToChoose = 0;
 var chosenTeam = [];
 
+var myPlayerIndex = 0;
 var gameRound = 1;
 var gamePhase = "propose";
 var participants = null;
@@ -87,6 +88,10 @@ function submitTeam() {
 
 // approve/reject phase
 
+function submitVote(index, vote) {
+    console.log(index + "," + vote);
+}
+
 function approveReject() {
     var retVal = '<p>Mission team chosen by leader:<br>';
     for (var i in chosenTeam) {
@@ -96,13 +101,15 @@ function approveReject() {
 
     var res = document.getElementById('participantsDiv');
 
-	retVal = '<button type="button">Approve</button>';
+	retVal = '<input type="submit" value="approve" onclick="submitVote(' + myPlayerIndex + ', 0);"></input>';
 	retVal += '<br>';
-	retVal += '<button type="button">Reject</button>';
+    retVal += '<input type="submit" value="reject" onclick="submitVote(' + myPlayerIndex + ', 1);"></input>';
 
     res.innerHTML = retVal;
 }
-
+function approveRejectResults() {
+    
+}
 
 function updateResults() {
 	var state = gapi.hangout.data.getState();
@@ -182,7 +189,12 @@ function init() {
                                             "phase": "propose",
                                             "rnd0": "0"} );
 
-
+            var myName = gapi.hangout.getLocalParticipant();
+            for (var i in participants) {
+                if (participants[i].person.displayName == myName) {
+                    myPlayerIndex = i;
+                }
+            }
         }
       });
 
