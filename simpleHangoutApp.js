@@ -77,8 +77,8 @@ function renderProposeTeam() {
 
 function approveReject() {
 	retVal = '<button type="button">Approve</button>';
-	retVal += '<br>'
-	retVal += '<button type="button">Reject</button>'
+	retVal += '<br>';
+	retVal += '<button type="button">Reject</button>';
 
   res.innerHTML = retVal;
 
