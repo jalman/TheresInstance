@@ -242,8 +242,14 @@ function init() {
                 for (var k in state) {
                     if (k.substring(0,4) == "vote") {
                         votes[parseInt(k[4])] = parseInt(state[k]);
-                        console.log(votes);
                     }
+                }
+                var finished = true;
+                for (var i=0; i<votes.length; ++i) {
+                    if (votes[i] == -1) finished = false;
+                }
+                if (finished) {
+                    succeedFail();
                 }
             }
         }
