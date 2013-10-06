@@ -100,7 +100,8 @@ function submitVote(index, vote) {
         res.innerHTML = 'mission rejected! waiting on others to cast their votes...';
     }
 
-    gapi.hangout.data.submitDelta( {"vote" + index: JSON.stringify(vote)} );
+    var votei = "vote" + index;
+    gapi.hangout.data.submitDelta( {votei : JSON.stringify(vote)} );
 }
 
 function approveReject() {
