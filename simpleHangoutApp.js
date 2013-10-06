@@ -57,7 +57,7 @@ function renderProposeTeamHeader() {
         if (cb && cb.checked) --numLeftToChoose;
     }
     header.innerHTML = '<p>' + numLeftToChoose + ' people left to choose for mission ' + roundNum + '!' +
-        '<input type="submit" value="propose it!" id="propose"></input>' + '</p>'
+        '<input type="submit" value="propose it!" id="propose" onclick="submitTeam();"></input>' + '</p>'
 
     document.getElementById('propose').disabled = (numLeftToChoose > 0);
 }
@@ -71,8 +71,20 @@ function renderProposeTeam() {
       retVal += '<form><input type="checkbox" id="choose' + index + '" onclick="renderProposeTeamHeader();">' + participant.person.displayName + '</form><br>'
   }
   document.getElementById('participantsDiv').innerHTML = retVal;
-
 }
+function submitTeam() {
+    console.log(4);
+    var team = [];
+    for (var index in participants) {
+        var cb = document.getElementById('choose' + index);
+        if (team.length < numToChoose && cb.checked) {
+            team.push(index);
+        }
+    }
+    console.log(team);
+}
+
+// approve/reject phase
 
 function approveReject() {
 
