@@ -128,7 +128,18 @@ function approveReject() {
 
 
 function submitPassFail(index, vote) {
-	gapi.hangout.data.sendMessage(vote);
+	var res = document.getElementById('participantsDiv');
+    if (vote == 0) {
+        res.innerHTML = 'mission succeeded! waiting on others to make their decisions...';
+    }
+    else if (vote == 1) {
+        res.innerHTML = 'mission failed! waiting on others to make their decisions...';
+    }
+
+    var votei = "vote" + index;
+    var obj = {};
+    obj[votei] = JSON.stringify(vote);
+    gapi.hangout.data.submitDelta(obj);
 }
 
 
@@ -148,6 +159,9 @@ function succeedFail() {
 	countNo = 0;
 	countYes = 0;
 
+    for (var i=0; i<participants.length; ++i) {
+        votes[i] = -1;
+    }
 	if (isIn(myPlayerIndex, chosenTeam)) {
 		IOnMission = true;
 	} else {
