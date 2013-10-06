@@ -71,6 +71,15 @@ function renderProposeTeam() {
 
 }
 
+function approveReject() {
+	retVal = '<button type="button">Approve</button>';
+	retVal += '<br>'
+	retVal += '<button type="button">Reject</button>'
+
+  document.getElementById('participantsDiv').innerHTML = retVal;
+
+}
+
 function init() {
 	gapi.hangout.data.onStateChanged.add(function() {
         var state = gapi.hangout.data.getState();
@@ -79,7 +88,7 @@ function init() {
           roundNum = gapi.hangout.data.getValue("round");
           numToChoose = numLeftToChoose = numOnMission[roundNum];
           participants = gapi.hangout.getParticipants();
-          
+
           renderProposeTeam();
           renderProposeTeamHeader();
         }
@@ -96,11 +105,12 @@ function init() {
           gapi.hangout.data.setValue("round", "1");
             gapi.hangout.data.submitDelta( {"round": "1",
                                             "phase": "propose"} );
-          
+
 
         }
       });
 
+	approveReject();
 }
 
 // Wait for gadget to load.
