@@ -56,7 +56,10 @@ function renderProposeTeamHeader() {
         var cb = document.getElementById('choose' + index);
         if (cb && cb.checked) --numLeftToChoose;
     }
-    header.innerHTML = '<p>' + numLeftToChoose + ' people left to choose for mission ' + numToChoose + '!</p>'
+    header.innerHTML = '<p>' + numLeftToChoose + ' people left to choose for mission ' + numToChoose + '!' +
+        '<input type="submit" value="propose it!" id="propose"></input>' + '</p>'
+
+    document.getElementById('propose').enabled = (numLeftToChoose == 0);
 }
 
 function renderProposeTeam() {
