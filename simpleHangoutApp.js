@@ -71,6 +71,7 @@ function renderProposeTeam() {
 function init() {
 	gapi.hangout.data.onStateChanged.add(function() {
         var state = gapi.hangout.data.getState();
+        console.log(state);
         if (state['phase'] == 'propose') {
             renderProposeTeam();
         }
