@@ -122,11 +122,7 @@ function updateResults() {
 
 		var ret = "";
 
-		if (state['phase'] == 'approve') {
-			ret = ret + '<p>The Proposed Mission for Round ' + (rnd + 1) + ': </p><ul>';
-		} else {
-			ret = ret + '<p>The Mission for Round ' + (rnd + 1) + ': </p><ul>';
-		}
+		ret = ret + '<p>The Mission for Round ' + (rnd + 1) + ': </p><ul>';
 
 
 		for (var i in miss) {
