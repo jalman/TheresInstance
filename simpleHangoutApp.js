@@ -101,7 +101,9 @@ function submitVote(index, vote) {
     }
 
     var votei = "vote" + index;
-    gapi.hangout.data.submitDelta( {votei : JSON.stringify(vote)} );
+    var obj = {};
+    obj[votei] = JSON.stringify(vote);
+    gapi.hangout.data.submitDelta(obj);
 }
 
 function approveReject() {
