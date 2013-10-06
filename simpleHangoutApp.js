@@ -1,5 +1,5 @@
 var roles = ['resistance','resistance', 'resistance','spy','spy','resistance','spy','resistance','resistance','spy']
-var numOnMission = [3,4,4,5,5]; //why would you play without 10 players
+var numOnMission = [1,1,1,2,2]; //why would you play without 10 players
 var numToChoose = 0;
 var numLeftToChoose = 0;
 
@@ -56,7 +56,7 @@ function renderProposeTeamHeader() {
         var cb = document.getElementById('choose' + index);
         if (cb && cb.checked) --numLeftToChoose;
     }
-    header.innerHTML = '<p>' + numLeftToChoose + ' people left to choose for mission ' + numToChoose + '!' +
+    header.innerHTML = '<p>' + numLeftToChoose + ' people left to choose for mission ' + roundNum + '!' +
         '<input type="submit" value="propose it!" id="propose"></input>' + '</p>'
 
     document.getElementById('propose').disabled = (numLeftToChoose > 0);
@@ -89,7 +89,7 @@ function init() {
         console.log(state);
         if (state['phase'] == 'propose') {
           roundNum = gapi.hangout.data.getValue("round");
-          numToChoose = numLeftToChoose = numOnMission[roundNum];
+          numToChoose = numLeftToChoose = numOnMission[roundNum-1];
           participants = gapi.hangout.getParticipants();
 
           renderProposeTeam();
