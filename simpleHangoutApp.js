@@ -157,8 +157,15 @@ function isIn(obj, a) {
 function checkProposeResults() {
     var retVal = "";
     for (var i in votes) {
-        retVal += "<p>";
+        retVal += "<p>" + participants[i].person.displayName + " voted ";
+        if (votes[i] == 0) {
+            retVal += "APPROVE!";
+        }
+        else {
+            retVal += "REJECT!";
+        }
     }
+    document.getElementById('resultsDiv').innerHTML = retVal;
 }
 function succeedFail() {
 	countNo = 0;
@@ -170,6 +177,7 @@ function succeedFail() {
         obj.push("vote" + i);
     }
     gapi.hangout.data.submitDelta( {"phase": "vote" }, obj);
+    checkProposeResults();
 
 	if (isIn(myPlayerIndex, chosenTeam)) {
 		IOnMission = true;
