@@ -4,13 +4,18 @@ var numToChoose = 0;
 var numLeftToChoose = 0;
 var chosenTeam = [];
 var votes = [];
+var IOnMission = false;
 
 var myPlayerIndex = 0;
+var myRole = 'resistance';
 var gameRound = 1;
 var gamePhase = "propose";
 var participants = null;
 
 var approveRejectMenuRendered = false;
+var countYes = 0;
+var countNo = 0;
+>>>>>>> fds
 
 function shuffle(array) {
   var currentIndex = array.length
@@ -121,8 +126,51 @@ function approveReject() {
 
     res.innerHTML = retVal;
 }
-function approveRejectResults() {
-    
+
+
+function submitPassFail(index, vote) {
+	gapi.hangout.data.sendMessage(vote);
+}
+
+
+function SucceedFailResults() {
+	countNo = 0;
+	countYes = 0;
+
+	if (isIn(myPlayerIndex, chosenTeam)) {
+		IOnMission = true;
+	} else {
+		IOnMission = false;
+	}
+
+	var retVal = "Mission Phase. <br>";
+
+	if (!IOnMission) {
+		retVal += "You are not on the mission. Please wait for votes to be counted.";
+	}
+
+	if(IOnMission) {
+		retVal += "You are on the mission. Please vote! <br>";
+		retVal += '<input type="submit" value="Succeed" onclick="submitPassFail(' + myPlayerIndex + ', \'0\');"></input>';
+
+		if(myrole == 'spy') {
+			retVal += ' <br> <input type="submit" value="Fail" onclick="submitPassFail(' + myPlayerIndex + ', \'1\');"></input>';
+		}
+	}
+}
+
+
+function isIn(obj, a) {
+	for (var b in a) {
+		if (obj == b) {
+			return true;
+		}
+	}
+	return false;
+}
+
+function succeedFail() {
+	if myPlayerIndex
 }
 
 function updateResults() {
@@ -165,7 +213,14 @@ function getMission(str) {
 
 
 function init() {
+	gapi.hangout.data.onMessageReceived.add(function(event) {
 
+		 if (state['phase'] == 'succeed') {
+			 if (event.message == "0") countYes++;
+			 else countNo++;
+		 }
+
+	});
 
 	gapi.hangout.data.onStateChanged.add(function() {
         updateResults();
