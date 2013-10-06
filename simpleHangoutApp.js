@@ -271,7 +271,7 @@ function init() {
       function(eventObj) {
         if (eventObj.isApiReady) {
 
-	document.getElementById('participantsDiv').innerHTML = "<input type="submit" value="Start the Game!" onclick="start();"></input>";
+	document.getElementById('participantsDiv').innerHTML = "<input type=\"submit\" value=\"Start the Game!\" onclick=\"start();\"></input>";
 
 
           participants = gapi.hangout.getParticipants();
