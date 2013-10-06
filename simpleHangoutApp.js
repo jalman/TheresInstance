@@ -44,7 +44,6 @@ function showParticipants() {
   retVal += '</ul>';
 
   var div = document.getElementById('participantsDiv');
-  var res = document.getElementById('resultsDiv');
 
   div.innerHTML = retVal;
 }
@@ -76,6 +75,8 @@ function renderProposeTeam() {
 }
 
 function approveReject() {
+
+  var res = document.getElementById('resultsDiv');
 	retVal = '<button type="button">Approve</button>';
 	retVal += '<br>';
 	retVal += '<button type="button">Reject</button>';
