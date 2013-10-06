@@ -164,7 +164,7 @@ function succeedFail() {
 		retVal += "You are on the mission. Please vote! <br>";
 		retVal += '<input type="submit" value="Succeed" onclick="submitPassFail(' + myPlayerIndex + ', \'0\');"></input>';
 
-		if(myrole == 'spy') {
+		if(myRole == 'spy') {
 			retVal += ' <br> <input type="submit" value="Fail" onclick="submitPassFail(' + myPlayerIndex + ', \'1\');"></input>';
 		}
 	}
