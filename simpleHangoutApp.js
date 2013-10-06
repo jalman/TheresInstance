@@ -148,7 +148,6 @@ function getMission(str) {
 
 
 function init() {
-          participants = gapi.hangout.getParticipants();
 
 
 	gapi.hangout.data.onStateChanged.add(function() {
@@ -175,6 +174,7 @@ function init() {
   gapi.hangout.onApiReady.add(
       function(eventObj) {
         if (eventObj.isApiReady) {
+          participants = gapi.hangout.getParticipants();
           document.getElementById('showParticipants')
             .style.visibility = 'visible';
 
