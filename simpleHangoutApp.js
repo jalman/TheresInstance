@@ -15,7 +15,6 @@ var participants = null;
 var approveRejectMenuRendered = false;
 var countYes = 0;
 var countNo = 0;
->>>>>>> fds
 
 function shuffle(array) {
   var currentIndex = array.length
