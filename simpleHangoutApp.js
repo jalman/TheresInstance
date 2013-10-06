@@ -154,7 +154,12 @@ function isIn(obj, a) {
 	}
 	return false;
 }
-
+function checkProposeResults() {
+    var retVal = "";
+    for (var i in votes) {
+        retVal += "<p>";
+    }
+}
 function succeedFail() {
 	countNo = 0;
 	countYes = 0;
