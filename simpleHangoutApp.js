@@ -105,14 +105,22 @@ function approveReject() {
 
 
 function updateResults() {
+	var state = gapi.hangout.data.getState();
 	for (var rnd = 4; rnd >= 0; rnd--) {
-		var str = gapi.hangout.data.getValue("rnd" + rnd + "");
+		var str = state["rnd" + rnd + ""];
 		if (!str) {
 			continue;
 		}
 		var miss = getMission(str);
 
-		ret = '<p>The Mission : </p><ul>';
+		var ret = "";
+
+		if (state['phase'] == 'approve') {
+			ret = ret + '<p>The Proposed Mission for Round ' + (rnd + 1) + ': </p><ul>';
+		} else {
+			ret = ret + '<p>The Mission for Round ' + (rnd + 1) + ': </p><ul>';
+		}
+
 
 		for (var i in miss) {
 			participant = miss[i];
