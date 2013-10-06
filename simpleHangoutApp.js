@@ -218,7 +218,6 @@ function start() {
 
 
 function init() {
-	state['phase'] = 'start';
 
 	gapi.hangout.data.onMessageReceived.add(function(event) {
 
@@ -271,6 +270,7 @@ function init() {
       function(eventObj) {
         if (eventObj.isApiReady) {
 
+	gapi.hangout.data.submitDelta( {"phase": "start"} );
 	document.getElementById('participantsDiv').innerHTML = "<input type=\"submit\" value=\"Start the Game!\" onclick=\"start();\"></input>";
 
 
