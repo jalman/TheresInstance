@@ -1,8 +1,11 @@
 var roles = ['resistance','resistance', 'resistance','spy','spy','resistance','spy','resistance','resistance','spy']
 var numOnMission = [3,4,4,5,5]; //why would you play without 10 players
+var numToChoose = 0;
+var numLeftToChoose = 0;
 
 var gameRound = 1;
 var gamePhase = "propose";
+var participants = null;
 
 function shuffle(array) {
   var currentIndex = array.length
@@ -22,7 +25,7 @@ function shuffle(array) {
 }
 
 function showParticipants() {
-  var participants = gapi.hangout.getParticipants();
+  participants = gapi.hangout.getParticipants();
   var retVal = '<p>Participants7: </p><ul>';
   for (var i in participants) {
     participant = participants[i];
@@ -46,23 +49,23 @@ function showParticipants() {
 }
 // proposing a team phase
 
+function renderProposeTeamHeader() {
+    var header = document.getElementById('headerDiv');
+    numLeftToChoose = numToChoose;
+    for (var index in participants) {
+        var cb = document.getElementById('choose' + index);
+        if (cb.checked) --numLeftToChoose;
+    }
+    header.innerHTML = '<p>' + numLeftToChoose + ' people left to choose for mission ' + numToChoose + '!</p>'
+}
+
 function renderProposeTeam() {
-  gapi.hangout.data.setValue("round", "1");
-
-  var participants = gapi.hangout.getParticipants();
-  var retVal = gapi.hangout.data.getValue("round");
-  console.log(retVal);
-  var numToChoose = numOnMission[retVal];
-
-  var header = document.getElementById('headerDiv');
-  header.innerHTML = '<p>' + numToChoose + ' people left to choose for mission ' + retVal + '!</p>'
-
   var retVal = '<p>';
 
   for (var index in participants) {
       var participant = participants[index];
       if (!participant.person) continue;
-      retVal += '<form><input type="checkbox" id="choose' + index + '">' + participant.person.displayName + '</form><br>'
+      retVal += '<form><input type="checkbox" id="choose' + index + '" onclick="renderProposeTeamHeader();">' + participant.person.displayName + '</form><br>'
   }
   document.getElementById('participantsDiv').innerHTML = retVal;
 
@@ -72,9 +75,13 @@ function init() {
 	gapi.hangout.data.onStateChanged.add(function() {
         var state = gapi.hangout.data.getState();
         console.log(state);
-        console.log(state['phase']);
         if (state['phase'] == 'propose') {
-            renderProposeTeam();
+          roundNum = gapi.hangout.data.getValue("round");
+          numToChoose = numLeftToChoose = numOnMission[retVal];
+          participants = gapi.hangout.getParticipants();
+          
+          renderProposeTeamHeader();
+          renderProposeTeam();
         }
 	});
 
