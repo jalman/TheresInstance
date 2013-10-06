@@ -243,6 +243,10 @@ function nextRound() {
 	                    myPlayerIndex = i;
 	                }
             }
+
+            renderProposeTeam();
+
+            renderProposeTeamHeader();
 }
 
 function updateResults() {
