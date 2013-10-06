@@ -95,6 +95,9 @@ function submitTeam() {
 
 // approve/reject phase
 
+function getLeader() {
+    return "Nathan is the leader.";
+}
 function submitVote(index, vote) {
     var res = document.getElementById('participantsDiv');
     if (vote == 0) {
@@ -243,6 +246,8 @@ function nextRound() {
 
     renderProposeTeam();
     renderProposeTeamHeader();
+
+    document.getElementById('resultsDiv').innerHTML = getLeader();
 }
 
 function updateResults() {
