@@ -59,7 +59,7 @@ function renderProposeTeamHeader() {
     header.innerHTML = '<p>' + numLeftToChoose + ' people left to choose for mission ' + numToChoose + '!' +
         '<input type="submit" value="propose it!" id="propose"></input>' + '</p>'
 
-    document.getElementById('propose').enabled = (numLeftToChoose == 0);
+    document.getElementById('propose').disabled = (numLeftToChoose > 0);
 }
 
 function renderProposeTeam() {
